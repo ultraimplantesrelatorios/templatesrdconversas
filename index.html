@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff6a00" />
+  <title>Ultra Implantes — Central de Inteligência</title>
+  <link rel="icon" href="assets/ultra-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-wrap">
+        <img class="brand-logo" src="assets/ultra-logo.png" alt="Ultra Implantes" />
+        <div class="brand-sub">Central de Inteligência Comercial</div>
+      </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <button class="nav-item active" data-view="central">⌂ <span>Central</span></button>
+        <button class="nav-item" data-view="copiloto">✦ <span>Copiloto</span></button>
+        <button class="nav-item" data-view="biblioteca">☰ <span>Biblioteca</span></button>
+        <button class="nav-item" data-view="importar">⇩ <span>Importar RD</span></button>
+        <button class="nav-item" data-view="gestao">◎ <span>Gestão · Milena</span></button>
+        <button class="nav-item" data-view="treinamento">◈ <span>Treinamento</span></button>
+      </nav>
+      <div class="side-footer">
+        <img src="assets/rd-conversas.png" alt="RD Station Conversas" />
+        <p>RD Conversas como infraestrutura. A experiência é Ultra.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-only" id="menuBtn" aria-label="Abrir menu">☰</button>
+        <div>
+          <div class="eyebrow">ULTRA IMPLANTES</div>
+          <h1 id="pageTitle">Central</h1>
+        </div>
+        <div class="top-actions">
+          <div class="status-pill"><span class="dot"></span> Base V6 ativa</div>
+          <button class="icon-btn" id="clearLocal" title="Limpar importações locais">↺</button>
+        </div>
+      </header>
+
+      <section class="view active" id="view-central">
+        <div class="hero card soft">
+          <div>
+            <div class="eyebrow orange">VISÃO DO DIA</div>
+            <h2>O que precisa de atenção agora?</h2>
+            <p>Uma leitura rápida da operação: tarefas, gargalos e próximos passos. Importe um CSV do RD para alimentar esta tela.</p>
+          </div>
+          <div class="hero-mark"><img src="assets/ultra-icon.png" alt="" /></div>
+        </div>
+
+        <div class="kpi-grid" id="kpiGrid">
+          <article class="kpi"><span>Tarefas</span><strong id="kpiTotal">—</strong><small>na última importação</small></article>
+          <article class="kpi"><span>Concluídas</span><strong id="kpiDone">—</strong><small>status registrado</small></article>
+          <article class="kpi alert"><span>Atrasadas</span><strong id="kpiLate">—</strong><small>precisam de leitura</small></article>
+          <article class="kpi"><span>Sem descrição</span><strong id="kpiNoDesc">—</strong><small>qualidade de registro</small></article>
+        </div>
+
+        <div class="two-col">
+          <article class="card">
+            <div class="section-head"><div><span class="eyebrow">AÇÃO AGORA</span><h3>Prioridades operacionais</h3></div><button class="text-btn" data-go="importar">Importar arquivo</button></div>
+            <div id="actionNow" class="empty-state">Ainda não há relatório importado neste navegador.</div>
+          </article>
+          <article class="card">
+            <div class="section-head"><div><span class="eyebrow">QUALIDADE</span><h3>Saúde do registro</h3></div></div>
+            <div id="qualityList" class="metric-list">
+              <div><span>Descrição preenchida</span><strong>—</strong></div>
+              <div><span>Responsável identificado</span><strong>—</strong></div>
+              <div><span>Nomenclatura normalizada</span><strong>ativa</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-copiloto">
+        <div class="copilot-layout">
+          <article class="card input-card">
+            <div class="eyebrow orange">COPILOTO DE ATENDIMENTO</div>
+            <h2>O que o paciente acabou de dizer?</h2>
+            <p class="muted">Cole a mensagem como ela chegou. O sistema interpreta, sugere a melhor pergunta e mantém o limite clínico.</p>
+            <textarea id="patientText" rows="7" placeholder="Ex.: Me falaram que eu não tenho osso e que só um implante diferente resolveria..."></textarea>
+            <div class="input-row">
+              <input id="patientName" placeholder="Primeiro nome (opcional)" />
+              <input id="agentName" placeholder="Atendente (opcional)" />
+            </div>
+            <button class="primary" id="analyzeBtn">Analisar conversa</button>
+            <div class="privacy-note">Não cole CPF, RG, exames ou dados sensíveis. Use somente o contexto necessário.</div>
+          </article>
+
+          <article class="card result-card" id="copilotResult">
+            <div class="empty-state tall">
+              <div class="big-icon">✦</div>
+              <strong>Pronta para pensar junto com você.</strong>
+              <span>Ela pensa tecnicamente por dentro e conversa de forma simples, humana e cuidadosa por fora.</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-biblioteca">
+        <div class="section-head page-head">
+          <div><span class="eyebrow orange">BASE MESTRE V6</span><h2>Biblioteca de cenários</h2><p class="muted">28 cenários validados, com respostas humanas e guardrails.</p></div>
+          <input class="search" id="librarySearch" placeholder="Buscar: preço, medo, pouco osso..." />
+        </div>
+        <div class="scenario-grid" id="scenarioGrid"></div>
+      </section>
+
+      <section class="view" id="view-importar">
+        <div class="section-head page-head">
+          <div><span class="eyebrow orange">RD CRM</span><h2>Importar Relatório RD</h2><p class="muted">CSV bruto. Preservamos os valores originais e criamos campos derivados para análise.</p></div>
+        </div>
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept=".csv,text/csv" hidden />
+          <img src="assets/rd-icon.png" alt="" />
+          <strong>Arraste seu CSV aqui</strong>
+          <span>ou clique para selecionar</span>
+          <small>Os dados ficam neste navegador. Não enviamos para servidor.</small>
+        </label>
+        <div id="importSummary" class="hidden"></div>
+      </section>
+
+      <section class="view" id="view-gestao">
+        <div class="section-head page-head"><div><span class="eyebrow orange">GESTÃO</span><h2>Painel da Milena</h2><p class="muted">Hoje, atenção, resultados e equipe — sem transformar volume bruto em “performance”.</p></div></div>
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-panel="hoje">Hoje</button>
+          <button class="tab" data-panel="atencao">Atenção</button>
+          <button class="tab" data-panel="equipe">Equipe</button>
+          <button class="tab" data-panel="evolucao">Evolução</button>
+        </div>
+        <div id="managementPanel" class="card"><div class="empty-state">Importe um relatório do RD para preencher o painel.</div></div>
+      </section>
+
+      <section class="view" id="view-treinamento">
+        <div class="section-head page-head"><div><span class="eyebrow orange">TREINAMENTO</span><h2>Transformar erro em aprendizado</h2><p class="muted">Nunca “a atendente errou”. Sempre: evidência → impacto → correção → exemplo → regra de processo.</p></div></div>
+        <div class="training-grid">
+          <article class="card"><span class="eyebrow">PADRÃO OURO</span><h3>Acolher → explicar → limitar → avançar</h3><p>Reconheça o que a pessoa disse. Explique sem despejar conteúdo. Mostre o que depende de avaliação. Termine com uma pergunta útil.</p></article>
+          <article class="card"><span class="eyebrow">NÃO FAZER</span><h3>Resposta robótica ou “seca”</h3><p>Evite “só na avaliação”, “quer agendar?”, promessas de ausência de dor, diagnóstico por WhatsApp e follow-up sem contexto.</p></article>
+          <article class="card"><span class="eyebrow">REGISTRO</span><h3>Contexto + barreira + combinado</h3><p>A próxima pessoa precisa conseguir continuar de onde a conversa parou sem obrigar o paciente a repetir tudo.</p></article>
+        </div>
+        <article class="card human-rule">
+          <h3>Regra mestre de humanização</h3>
+          <blockquote>“A IA da Ultra precisa saber odontologia em nível sênior, mas falar como uma ótima pessoa de atendimento. Ela pensa tecnicamente por dentro e conversa de forma simples, humana e cuidadosa por fora.”</blockquote>
+        </article>
+      </section>
+    </main>
+  </div>
+  <div class="scrim" id="scrim"></div>
+  <script src="config.js"></script>
+  <script src="scenarios.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
